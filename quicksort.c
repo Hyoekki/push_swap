@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 09:18:34 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/03/31 11:05:16 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/03/31 14:07:00 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,23 @@ void	quicksort_b(t_stack *stack_a, t_stack *stack_b, int len)
 	int	pushed;
 	int	rotations;
 	int	i;
+	int	curr_size;
 
 	if (len <= 1 || is_sorted(stack_b, 'b'))
 		return ;
 	if (len == 2 && stack_b->head->data < stack_b->head->next->data)
 		return (sb(stack_b));
+	curr_size = count_stack_size(stack_b);
+	if (curr_size == 3)
+	{
+		sort_three(stack_b, 'b');
+		while (curr_size)
+		{
+			pa(stack_b, stack_a);
+			curr_size--;
+		}
+		return ;
+	}
 	pivot = get_pivot(stack_b, len);
 	pushed = 0;
 	rotations = 0;
@@ -104,11 +116,15 @@ void	quicksort_a(t_stack *stack_a, t_stack *stack_b, int len)
 	int	pushed;
 	int	rotations;
 	int	i;
+	int	curr_size;
 
 	if (len <= 1 || is_sorted(stack_a, 'a'))
 		return ;
 	if (len == 2 && stack_a->head->data > stack_a->head->next->data)
 		return (sa(stack_a));
+	curr_size = count_stack_size(stack_a);
+	if (curr_size == 3)
+		return (sort_three(stack_a, 'a'));
 	pivot = get_pivot(stack_a, len);
 	pushed = 0;
 	rotations = 0;
