@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 09:18:34 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/03/31 19:02:25 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/03/31 19:09:12 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,30 @@ int	is_sorted(t_stack *stack, char a_or_b)
 	return (0);
 }
 
-void	quicksort_b(t_stack *stack_a, t_stack *stack_b, int len)
+void	rotate_back_b(t_stack *stack, int rotations, int len)
+{
+	if (rotations > 0 && rotations <= len / 2)
+	{
+
+		while (rotations--)
+			rrb(stack);
+	}
+	else if (rotations > len / 2)
+	{
+	
+		int forward_rotations = len - rotations;
+		while (forward_rotations--)
+			rb(stack);
+	}
+}
+
+int	partition_b(t_stack *stack_a, t_stack *stack_b, int len)
 {
 	int	pivot;
 	int	pushed;
 	int	rotations;
 	int	i;
-	int	current_len;
 
-	if (len <= 1 || is_sorted(stack_b, 'b'))
-		return ;
-	if (len == 2 && stack_b->head->data < stack_b->head->next->data)
-		return (sb(stack_b));
-	current_len = count_stack_size(stack_b);
-	if (current_len == 3)
-	{
-		sort_three(stack_b, 'b');
-		return ;
-	}
 	pivot = get_pivot(stack_b, len);
 	pushed = 0;
 	rotations = 0;
@@ -93,20 +99,26 @@ void	quicksort_b(t_stack *stack_a, t_stack *stack_b, int len)
 		}
 		i++;
 	}
+	rotate_back_b(stack_b, rotations, len);
+	return (pushed);
+}
 
-	if (rotations > 0 && rotations <= len / 2)
-	{
-		
-		while (rotations--)
-			rrb(stack_b);
-	}
-	else if (rotations > len / 2)
-	{
+void	quicksort_b(t_stack *stack_a, t_stack *stack_b, int len)
+{
+	int	pushed;
+	int	current_len;
 
-		int forward_rotations = len - rotations;
-		while (forward_rotations--)
-			rb(stack_b);
+	if (len <= 1 || is_sorted(stack_b, 'b'))
+		return ;
+	if (len == 2 && stack_b->head->data < stack_b->head->next->data)
+		return (sb(stack_b));
+	current_len = count_stack_size(stack_b);
+	if (current_len == 3)
+	{
+		sort_three(stack_b, 'b');
+		return ;
 	}
+	pushed = partition_b(stack_a, stack_b, len);
 	quicksort_b(stack_a, stack_b, len - pushed);
 	quicksort_a(stack_a, stack_b, pushed);
 	while (pushed--)
@@ -181,10 +193,3 @@ void	quicksort_a(t_stack *stack_a, t_stack *stack_b, int len)
 		pa(stack_b, stack_a);
 }
 
-void	quicksort(t_stack *stack_a, t_stack *stack_b, int len)
-{
-	if (len == 3)
-		sort_three(stack_a, 'a');
-	else
-		quicksort_a(stack_a, stack_b, len);
-}
