@@ -1,7 +1,7 @@
 CC = cc
 NAME = push_swap
 FLAGS = -Wall -Werror -Wextra -O2
-SRCS = push_swap.c quicksort.c reverse_rotate.c rotate.c swap.c push.c validate_input.c get_pivot.c sort3.c
+SRCS = push_swap.c quicksort.c reverse_rotate.c rotate.c swap.c push.c validate_input.c get_pivot.c sort_three.c sort_five.c sort_a.c sort_b.c
 OBJS = $(SRCS:.c=.o)
 LIBFT_DIR = libft
 LIBFT_A = $(LIBFT_DIR)/libft.a

@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 10:27:49 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/03/31 19:03:03 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/03/31 19:27:09 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	len = count_stack_size(stack_a);
-	quicksort_a(stack_a, stack_b, len);
+	quicksort(stack_a, stack_b, len);
 	free_stack(stack_a);
 	free(stack_a);
 	free_stack(stack_b);

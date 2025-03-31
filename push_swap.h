@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 10:27:38 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/03/31 09:57:57 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/03/31 19:38:31 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_stack
 	t_node	*tail;
 }	t_stack;
 
+void	sort_five(t_stack *stack_a, t_stack *stack_b);
+int		is_sorted(t_stack *stack, char a_or_b);
 void	quicksort(t_stack *stack_b, t_stack *stack_a, int len);
 void	quicksort_a(t_stack *stack_b, t_stack *stack_a, int len);
 void	quicksort_b(t_stack *stack_b, t_stack *stack_a, int len);
