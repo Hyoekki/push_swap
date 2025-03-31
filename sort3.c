@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 20:20:17 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/03/31 08:56:21 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/03/31 17:31:10 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,12 @@ void	sort_three_a(t_stack *stack)
 	if (a > b && b < c && a < c)
 		sa(stack);
 	else if (a < b && b > c && a < c)
-		rra(stack);
-	else if (a < b && b > c && a > c)
+	{
 		sa(stack);
+		ra(stack);
+	}
+	else if (a < b && b > c && a > c)
+		rra(stack);
 	else if (a > b && b < c && a > c)
 		ra(stack);
 	else if (a > b && b > c)
@@ -54,11 +57,14 @@ void	sort_three_b(t_stack *stack)
 	if (a < b && b > c && a > c)
 		sb(stack);
 	else if (a > b && b < c && a > c)
-		rrb(stack);
-	else if (a > b && b < c && a < c)
-		rb(stack);
-	else if (a < b && b > c && a < c)
+	{
 		sb(stack);
+		rb(stack);
+	}
+	else if (a > b && b < c && a < c)
+		rrb(stack);
+	else if (a < b && b > c && a < c)
+		rb(stack);
 	else if (a < b && b < c)
 	{
 		sb(stack);
