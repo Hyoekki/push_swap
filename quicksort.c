@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 09:18:34 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/03/31 18:10:06 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/03/31 19:02:25 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,14 @@ void	quicksort_b(t_stack *stack_a, t_stack *stack_b, int len)
 	if (rotations > 0 && rotations <= len / 2)
 	{
 		
-		while (rotations-- /* && !is_sorted(stack_b, 'b') */)
+		while (rotations--)
 			rrb(stack_b);
 	}
 	else if (rotations > len / 2)
 	{
 
 		int forward_rotations = len - rotations;
-		while (forward_rotations-- /* && !is_sorted(stack_b, 'b') */)
+		while (forward_rotations--)
 			rb(stack_b);
 	}
 	quicksort_b(stack_a, stack_b, len - pushed);
@@ -113,24 +113,30 @@ void	quicksort_b(t_stack *stack_a, t_stack *stack_b, int len)
 		pb(stack_a, stack_b);
 }
 
-void	quicksort_a(t_stack *stack_a, t_stack *stack_b, int len)
+void	rotate_back_a(t_stack *stack, int rotations, int len)
+{
+	if (rotations > 0 && rotations <= len / 2)
+	{
+
+		while (rotations--)
+			rra(stack);
+	}
+	else if (rotations > len / 2)
+	{
+	
+		int forward_rotations = len - rotations;
+		while (forward_rotations--)
+			ra(stack);
+	}
+}
+
+int	partition_a(t_stack *stack_a, t_stack *stack_b, int len)
 {
 	int	pivot;
 	int	pushed;
 	int	rotations;
 	int	i;
-	int	curr_size;
 
-	if (len <= 1 || is_sorted(stack_a, 'a'))
-		return ;
-	if (len == 2 && stack_a->head->data > stack_a->head->next->data)
-		return (sa(stack_a));
-	curr_size = count_stack_size(stack_a);
-	if (curr_size == 3)
-	{
-		sort_three(stack_a, 'a');
-		return ;
-	}
 	pivot = get_pivot(stack_a, len);
 	pushed = 0;
 	rotations = 0;
@@ -149,19 +155,26 @@ void	quicksort_a(t_stack *stack_a, t_stack *stack_b, int len)
 		}
 		i++;
 	}
-	if (rotations > 0 && rotations <= len / 2)
-	{
+	rotate_back_a(stack_a, rotations, len);
+	return (pushed);
+}
 
-		while (rotations-- /* && !is_sorted(stack_a, 'a') */)
-			rra(stack_a);
-	}
-	else if (rotations > len / 2)
+void	quicksort_a(t_stack *stack_a, t_stack *stack_b, int len)
+{
+	int	pushed;
+	int	curr_size;
+
+	if (len <= 1 || is_sorted(stack_a, 'a'))
+		return ;
+	if (len == 2 && stack_a->head->data > stack_a->head->next->data)
+		return (sa(stack_a));
+	curr_size = count_stack_size(stack_a);
+	if (curr_size == 3)
 	{
-	
-		int forward_rotations = len - rotations;
-		while (forward_rotations-- /* && !is_sorted(stack_a, 'a') */)
-			ra(stack_a);
+		sort_three(stack_a, 'a');
+		return ;
 	}
+	pushed = partition_a(stack_a, stack_b, len);
 	quicksort_a(stack_a, stack_b, len - pushed);
 	quicksort_b(stack_a, stack_b, pushed);
 	while (pushed--)

@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 20:20:17 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/03/31 17:31:10 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/03/31 18:41:25 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@ void	sort_three_a(t_stack *stack)
 	int	b;
 	int	c;
 
-	if (!stack || !stack->head || !stack->head->next
-		|| !stack->head->next->next)
-		return ;
 	a = stack->head->data;
 	b = stack->head->next->data;
 	c = stack->head->next->next->data;
@@ -48,9 +45,6 @@ void	sort_three_b(t_stack *stack)
 	int	b;
 	int	c;
 
-	if (!stack || !stack->head || !stack->head->next
-		|| !stack->head->next->next)
-		return ;
 	a = stack->head->data;
 	b = stack->head->next->data;
 	c = stack->head->next->next->data;
