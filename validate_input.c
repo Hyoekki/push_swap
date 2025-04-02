@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 10:28:33 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/04/02 10:18:30 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/04/02 11:16:07 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	parse_string(t_stack *stack, char *str)
 {
 	char	**numbers;
 	int		i;
-	
+
 	if (!str || !*str)
 		return (-1);
 	if (*str == ' ')
