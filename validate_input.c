@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 10:28:33 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/03/31 08:57:46 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/04/02 10:18:30 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,76 @@ int	is_duplicate(int n, t_stack *stack_a)
 	return (0);
 }
 
+int	is_valid_number(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (!str[i])
+		return (0);
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static int	check_duplicates_in_input(char **numbers, int i)
+{
+	int	j;
+
+	j = 0;
+	while (j < i)
+	{
+		if (ft_atol(numbers[j]) == ft_atol(numbers[i]))
+			return (1);
+		j++;
+	}
+	return (0);
+}
+
+static int	validate_and_add_number(t_stack *stack, char *number)
+{
+	long	value;
+
+	if (!is_valid_number(number))
+		return (-1);
+	value = ft_atol(number);
+	if (value > 2147483647 || value < -2147483648
+		|| is_duplicate((int)value, stack))
+		return (-1);
+	if (!append_node(stack, create_node((int)value)))
+		return (-1);
+	return (0);
+}
+
 int	parse_string(t_stack *stack, char *str)
 {
 	char	**numbers;
 	int		i;
-	int		len;
-
+	
+	if (!str || !*str)
+		return (-1);
+	if (*str == ' ')
+		return (-1);
 	numbers = ft_split(str, ' ');
-	len = 0;
-	while (numbers[len])
+	if (!numbers)
+		return (-1);
+	i = 0;
+	while (numbers[i])
 	{
-		if (is_duplicate(ft_atoi(numbers[len]), stack))
+		if (check_duplicates_in_input(numbers, i)
+			|| validate_and_add_number(stack, numbers[i]) == -1)
 		{
-			write(2, "Error\n", 6);
-			while (len--)
-				free(numbers[len]);
-			free(numbers);
-			exit(EXIT_FAILURE);
+			free_array_of_strings(numbers);
+			return (-1);
 		}
-		append_node(stack, create_node(ft_atoi(numbers[len])));
-		len++;
+		i++;
 	}
-	i = len;
-	while (i > 0)
-		free(numbers[--i]);
-	free(numbers);
-	return (len);
+	free_array_of_strings(numbers);
+	return (i);
 }

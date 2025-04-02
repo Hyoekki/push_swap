@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 10:27:38 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/03/31 19:38:31 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/04/02 11:12:52 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft/include/libft.h"
-# include <stdio.h>
 
 typedef struct s_node
 {
@@ -31,6 +30,9 @@ typedef struct s_stack
 	t_node	*tail;
 }	t_stack;
 
+int		parse_string(t_stack *stack, char *str);
+t_stack	*append_node(t_stack *stack, t_node *node);
+int		initialize_stacks(t_stack **stack_a, t_stack **stack_b);
 void	sort_five(t_stack *stack_a, t_stack *stack_b);
 int		is_sorted(t_stack *stack, char a_or_b);
 void	quicksort(t_stack *stack_b, t_stack *stack_a, int len);

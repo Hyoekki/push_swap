@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 09:18:34 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/03/31 19:37:48 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/04/01 18:04:29 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	is_sorted(t_stack *stack, char a_or_b)
 
 void	quicksort(t_stack *stack_a, t_stack *stack_b, int len)
 {
+	if (len == 1)
+		exit (EXIT_SUCCESS);
 	if (len <= 5)
 	{
 		if (len == 3)
