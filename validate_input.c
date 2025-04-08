@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 10:28:33 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/04/02 11:16:07 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/04/08 13:07:10 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	is_valid_number(char *str)
 	return (1);
 }
 
-static int	check_duplicates_in_input(char **numbers, int i)
+int	check_duplicates_in_input(char **numbers, int i)
 {
 	int	j;
 
@@ -58,7 +58,7 @@ static int	check_duplicates_in_input(char **numbers, int i)
 	return (0);
 }
 
-static int	validate_and_add_number(t_stack *stack, char *number)
+int	validate_and_add_number(t_stack *stack, char *number)
 {
 	long	value;
 

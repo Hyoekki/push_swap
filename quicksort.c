@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 09:18:34 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/04/01 18:04:29 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/04/08 14:01:04 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,15 @@ int	is_sorted(t_stack *stack, char a_or_b)
 void	quicksort(t_stack *stack_a, t_stack *stack_b, int len)
 {
 	if (len == 1)
-		exit (EXIT_SUCCESS);
-	if (len <= 5)
+		exit(EXIT_SUCCESS);
+	if (len == 2 && is_sorted(stack_a, 'a'))
+		exit(EXIT_SUCCESS);
+	if (len == 2 && !is_sorted(stack_a, 'a'))
+	{
+		sa(stack_a);
+		exit(EXIT_SUCCESS);
+	}
+	if (len <= 5 && !is_sorted(stack_a, 'a'))
 	{
 		if (len == 3)
 			sort_three(stack_a, 'a');

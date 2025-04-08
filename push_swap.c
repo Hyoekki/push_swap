@@ -6,13 +6,13 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 10:27:49 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/04/02 11:06:50 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/04/08 13:07:18 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	handle_error(t_stack *stack_a, t_stack *stack_b)
+void	handle_error(t_stack *stack_a, t_stack *stack_b)
 {
 	free_stack(stack_a);
 	free(stack_a);
@@ -21,7 +21,7 @@ static void	handle_error(t_stack *stack_a, t_stack *stack_b)
 	write(2, "Error\n", 6);
 }
 
-static int	parse_arguments(t_stack *stack_a, int argc, char **argv)
+int	parse_arguments(t_stack *stack_a, int argc, char **argv)
 {
 	int	i;
 	int	parse_result;
