@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort3.c                                            :+:      :+:    :+:   */
+/*   sort_three.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 20:20:17 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/03/31 19:28:35 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/04/10 18:25:28 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,20 @@ void	sort_three_b(t_stack *stack)
 	}
 }
 
-void	sort_three(t_stack *stack, char c)
+void	sort_three(t_stack *stack, char c, int len)
 {
 	if (c == 'a')
-		sort_three_a(stack);
+	{
+		if (len == 2 && stack->head->data > stack->head->next->data)
+			sa(stack);
+		else
+			sort_three_a(stack);
+	}
 	else if (c == 'b')
-		sort_three_b(stack);
+	{
+		if (len == 2 && stack->head->data < stack->head->next->data)
+			sb(stack);
+		else
+			sort_three_b(stack);
+	}
 }

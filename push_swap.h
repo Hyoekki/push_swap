@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 10:27:38 by jhyokki           #+#    #+#             */
-/*   Updated: 2025/04/02 11:12:52 by jhyokki          ###   ########.fr       */
+/*   Updated: 2025/04/10 18:22:45 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	quicksort_a(t_stack *stack_b, t_stack *stack_a, int len);
 void	quicksort_b(t_stack *stack_b, t_stack *stack_a, int len);
 int		count_stack_size(t_stack *stack);
 int		get_pivot(t_stack *stack, int len);
-void	sort_three(t_stack *stack, char c);
+void	sort_three(t_stack *stack, char c, int len);
 int		get_pivot(t_stack *stack, int len);
 int		is_duplicate(int n, t_stack *stack_a);
 int		parse_string(t_stack *stack, char *str);
